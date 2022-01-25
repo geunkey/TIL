@@ -1,5 +1,7 @@
-count_vowels = 'apple'
-print(count_vowels.count('p'))
+num = int(input('숫자를 입력해주세요 : '))
+print(num, type(num))
 
-count_vowels = 'banana'
-print(count_vowels.count('a'))
+if num % 2:
+    print('홀수입니다.')
+else:
+    print('짝수입니다.')
