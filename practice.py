@@ -1,70 +1,51 @@
-# # number = 2
-# # # print(number)
-# # # number *= 16
-# # # print(number)
-# # # number //= 2
-# # # print(number)
-# # # number %= 5
-# # # print(number)
-# # number //= 5
-# # print(number)
-# print(round(3.2))
-# from math import *
-# print(ceil(3.14))
-# print(floor(3.14))
-# print(sqrt(25))
+# # a = '7'
+# # a = int(a)
+# # print(a, type(a))
+# # num_str = "720"  #형변환
+# # num_int = int(num_str)
+# # print(num_int+1, type(num_int))
+# # a= 8
+# # b = str(a)
+# # print(b, type(b))
+# # data = 15.79
+# # #data = float(data)
+# # print(data, type(data))
+# year = '2020'
+# a= int(year)
+# print(a, a+1)
+# a = 48548
+# print(a*36)
+# num_list = [2, 1, 4, 9, 5, 4, 5]
+# num_list.sort()
+# print(num_list)
+# A = {'a' : 'db', 'b' : 'toy'}
+# print(A)
+# print(A.items())
+# A.clear()
+# # print(A)
+# A = ('돈가스', '치즈까스')
+# # A.append('생선')
+# print(A[0])
+# name = '김', '근', '호'
+# print(name)
 
 
-# from random import randint
-
-# a = randint(4,28)
-# print(f'오프라인 모임날짜는 매월 {a} 일로 선정되었습니다.')
-# print('오프라인 모임날짜는 매월 ' + str(a) + ' 일로 선정되었습니다.')
-# print('오프라인 모임날짜는 매월' , str(a) , '일로 선정되었습니다.')
-# print('오프라인 모임날짜는 매월 %c 일로 선정되었습니다.' % b)
+from random import *
+A = range(1, 21)
+A= list(A)
+# shuffle(A)
 
 
+winners = sample(A, 4)
 
-# from platform import python_branch
-# # from this import s
+# print(winners)
+print('치킨당첨자 :', winners[0])
+print('커피당첨자 :', winners[1:])
 
-
-# from re import A
-
-
-# print('Apple은 %s로 시작해요.' %30 )
-
-
-# s = '''나는
-# 근호'''
-
-# print('geunho kim \r GEUNHO')
-
-# a = 1, 2, 3, 4, 5, 6, 7, 8, 9
-
-# print(a[-3: ])
-
-
-# python = 'Python is Amazing'
-
-# print(python.index('n',index+1 ))
+# print('치킨당첨자:' + str(sample(A,1)))
+# print('커피당첨자:' + str(sample(A,3)))
 
 
 
 
 
-# asd = 'naver.com'
-# print(asd[0:3] + str(asd.index('.')) + str(asd.count('e')) + '!')
-
-url = 'http://daum.com'
-asd = url.replace('http://', '')
-# print(asd)
-# print(asd[:5])
-# print(asd.index('.'))
-asd = asd[:asd.index('.')]
-# print(asd)
-password = asd[:3] + str(len(asd)) + str(asd.count('e')) + '!'
-print(f'{url}의 비밀번호는 {password}이다.')
-# print(len(asd))
-# print(asd.count('e'))
-# print('!')
