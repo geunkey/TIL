@@ -192,6 +192,6 @@ $RECYCLE.BIN/
 *.msp
 
 # Windows shortcuts
-*.lnk
+*.lnk 
 
 # End of https://www.toptal.com/developers/gitignore/api/python,windows,venv
