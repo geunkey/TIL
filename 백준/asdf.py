@@ -3,6 +3,6 @@
 # lst = list(map(input()))
 # lst = list(map(int, input()))
 s = '123'
-a = atoi(s)
+# a = atoi(s)
 
 print(a + 1)
