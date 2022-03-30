@@ -53,6 +53,7 @@ for tc in range(1, T + 1):
     lst = list(map(int, input().split()))
 
     TREE = [[0] * 2 for _ in range(E + 2)]
+    # print(TREE)
     for i in range(0, len(lst), 2):
         p = lst[i]
         c = lst[i + 1]
