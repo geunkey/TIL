@@ -10,3 +10,4 @@ def one(num):
     return cnt
 
 print(one(num))
+
