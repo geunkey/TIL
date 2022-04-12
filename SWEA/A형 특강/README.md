@@ -5,5 +5,5 @@
 
 
 
-
+수업 링크
 https://gist.github.com/mincoding1/671a2c5bd6e095ec856e52431731ee74
