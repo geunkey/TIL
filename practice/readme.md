@@ -113,3 +113,17 @@
 # '22.04.01. 금요일
 
 수업--> DFS, BFS 복습
+
+
+
+# '22.04.13. 수요일
+
+수업 -- > DB02 : 댓글 기능 만들기
+
+* Foreign key
+  * comment CREATE
+  * comment READ
+  * comment DELETE
+* customizing authentication in Django
+  * Substituting a custom User model
+  * Custom user & Built-in auth forms
