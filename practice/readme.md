@@ -1,4 +1,4 @@
-# '22.03.21. 월요일
+# '22.03.21. 월요일 
 
 **수업** : 컴퓨팅 사고력 --> 과제 2문제
 
@@ -127,3 +127,9 @@
 * customizing authentication in Django
   * Substituting a custom User model
   * Custom user & Built-in auth forms
+
+# '22.04.14. 목요일
+
+수업 -- > Django2, DB01
+
+* SQL, ORM 명령어
