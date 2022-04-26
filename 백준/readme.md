@@ -1,14 +1,14 @@
-#1
+# 1
 try:
     sumV += lst[i][s+i]
 except:
     pass
 
-#2
+# 2
 ''.join()
 *lst[1:]
 
-#3
+# 3
 입력값이
 1 2 3 4
 5 6 7 8
@@ -18,3 +18,27 @@ except:
 1234
 5678
 이려면 .split() 미사용
+
+
+
+# 10951, 15552, 1110
+
+```python
+# 테스트케이스가 없이 나오는 문제
+while True:
+    try:
+        n, m = map(int, input().split())
+        print(n+m)
+    except:
+        break
+        
+        
+# 알아둘 것 ==> sys.stdin.readline()
+import sys
+N, M = map(int, sys.stdin.readline().split())
+
+# 종료 조건이 본인일 때 N의 값을 다른곳에 저장해둔 걸 사용한다
+
+end = N
+```
+
