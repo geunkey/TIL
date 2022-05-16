@@ -1,52 +1,116 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
+# 좋아요 기능
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dog API</title>
-  <style>
-    img {
-      height: 500px;
-    }
-  </style>
-</head>
+![image-20220503124707193](workshop.assets/image-20220503124707193.png)
 
-<body>
-  <h1>Dog API</h1>
-  <img src="" alt="dog">
-  <br>
-  <button>Get dog</button>
 
-  <!-- axios CDN을 삽입한다. -->
 
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  
-  <script>
-    const API_URI = 'https://dog.ceo/api/breeds/image/random'
+## views.py
 
-    function getDog() {
-      // axios를 사용하여 API_URI로 GET 요청을 보낸다.
-      const imgData = document.querySelector('img')
-      axios.get(API_URI)
+```python
+@require_POST
+def likes(request, article_pk):
+    # CODE HERE
+    if request.user.is_authenticated:
+        article = get_object_or_404(Article, pk=article_pk)
+        # if request.user in article.like_users.all():
+        if article.like_users.filter(pk=request.user.pk).exists():
+            article.like_users.remove(request.user)
+            isLiked = False
+        else:
+            article.like_users.add(request.user)
+            isLiked = True
+        context={
+            'isLiked': isLiked,
+            'likedCount': article.like_users.count(),
+        }
+        return JsonResponse(context)
+        # return redirect('articles:index')
 
-      // .then 메서드를 통해 요청이 성공적인 경우의 콜백함수를 정의한다.
-      .then(response => {
-          const imgSrc = response.data.message
-          imgData.setAttribute('src', imgSrc)
-        })
-      // 응답객체의 데이터에서 이미지에 대한 리소스를 img 요소의 src 속성으로 할당한다.    
-
-    }
-
-    const button = document.querySelector('button')
-    button.addEventListener('click', getDog)
-
-  </script>
-</body>
-
-</html>
+    return redirect('accounts:login')
 ```
 
-![image-20220502225700577](workshop.assets/image-20220502225700577.png)
+
+
+## index.html
+
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Articles</h1>
+  {% if request.user.is_authenticated %}
+    <a href="{% url 'articles:create' %}">[CREATE]</a>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">[새 글을 작성하려면 로그인하세요.]</a>
+  {% endif %}
+  <hr>
+  {% for article in articles %}
+    <p>작성자 : 
+      <a href="{% url 'accounts:profile' article.user.username %}">{{ article.user }}</a>
+    </p>
+    <p>글 번호 : {{ article.pk }}</p>
+    <p>글 제목 : {{ article.title }}</p>
+    <p>글 내용 : {{ article.content }}</p>
+    <div>
+      <form class="like-form" data-article-id="{{ article.pk }}">
+        {% csrf_token %}
+        {% if user in article.like_users.all %}
+          <button id="like-{{ article.pk }}">좋아요 취소</button>
+        {% else %}
+          <button id="like-{{ article.pk }}">좋아요</button>
+        {% endif %}
+      </form>
+      <p>
+        <span id="like-count-{{ article.pk }}">
+          {{ article.like_users.all|length }}
+        </span>
+        명이 이 글을 좋아합니다.
+      </p>
+    </div>
+    <a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a>
+    <hr>
+  {% endfor %}
+{% endblock content %}
+
+{% block script %}
+  <script>
+    // CODE HERE
+    const forms = document.querySelectorAll('.like-form')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    // console.log(forms)
+    forms.forEach((form)=>{
+      // console.log(form)
+      form.addEventListener('submit', (event)=>{
+        event.preventDefault()
+        // console.log(event.target.dataset.articleId)
+        const articleId = event.target.dataset.articleId
+        //axios.get('http://127.0.0.1:8000/articles/${articleId}/likes/')
+        axios({
+          method:'post',
+          url: `http://127.0.0.1:8000/articles/${articleId}/likes/`,
+          headers: {'X-CSRFToken': csrftoken},
+        })
+          .then(response => {
+            const { isLiked, likedCount } = response.data
+            console.log(isLiked, likedCount)
+            const likeBtn = document.querySelector(`#like-${articleId}`)
+            const likeCount = document.querySelector(`#like-count-${articleId}`)
+            likeCount.innerText = likedCount
+            //console.log(likeBtn)
+            if (isLiked) {
+              likeBtn.innerText = '좋아요 취소'
+              likeBtn.style.color = 'black'
+            }
+            else {
+              likeBtn.innerText = '좋아요'
+              likeBtn.style.color = 'red'
+            }
+          })
+      })
+    })
+  </script>
+{% endblock script %}
+
+```
+
