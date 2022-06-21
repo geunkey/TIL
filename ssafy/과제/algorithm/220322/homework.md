@@ -1,0 +1,13 @@
+![image-20220322092724072](homework.assets/image-20220322092724072.png)
+
+
+
+![image-20220322093823007](homework.assets/image-20220322093823007.png)
+
+
+
+
+
+![image-20220322093801665](homework.assets/image-20220322093801665.png)
+
+![image-20220322145137081](homework.assets/image-20220322145137081.png)
